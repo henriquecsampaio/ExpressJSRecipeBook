@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  h1= title
+  p Welcome to the #{title}
+  for recipe in items 
+    div(style="border:solid 1px black; padding:10px; margin:5px")
+      label Name: 
+      label=recipe.name
+      br
+      label Description: 
+      label=recipe.description
+      br
+      Label Difficulty: 
+      label=recipe.difficulty
+      br
+      label Ingredients: 
+      ul
+        for ingredient in recipe.ingredients
+          li #{ingredient}
+      br
+      label Steps: 
+      ul
+        for step in recipe.steps
+          li #{step}
+      br
+      a(href="recipes/edit/" + recipe._id) Edit
+      br
+      button(type="button", onclick=`deleteRecipe('${recipe._id}')`) Delete 
+
+  script.
+    function deleteRecipe(recipeId){
+      window.location.href = '/recipes/delete/' + recipeId;
+    }

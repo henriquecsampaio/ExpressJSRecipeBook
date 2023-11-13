@@ -1,0 +1,28 @@
+extends layout
+
+block content
+    if errors
+        each error in errors 
+            p(style="color:red") #{error.msg}
+    h1 Add Recipe
+    form(method="POST", action="/recipes/add")
+        label Name:
+            input(name="name", type="text", required)
+        br
+        label Description:
+            input(name="description", type="text", required)
+        br
+        label Difficulty:
+            for difficulty in difficultyLevels
+                label=difficulty 
+                input(name="difficulty", type="radio", value=difficulty, required)
+        br
+        label Enter ingredient:
+            input(name="ingredients", type="text", required)
+        br
+        label Steps:
+            input(name="steps", type="text", required)
+        br
+        input(value="Add", type="Submit")
+
+
